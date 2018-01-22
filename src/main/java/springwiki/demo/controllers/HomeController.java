@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import springwiki.demo.models.Category;
-import springwiki.demo.models.Page;
+import springwiki.demo.entities.Category;
 import springwiki.demo.repositories.CategoryRepository;
 import springwiki.demo.repositories.PageRepository;
 

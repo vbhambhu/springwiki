@@ -2,19 +2,17 @@ package springwiki.demo.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-import springwiki.demo.models.AjaxResponse;
-import springwiki.demo.models.Page;
+import springwiki.demo.entities.AjaxResponse;
+import springwiki.demo.entities.Page;
 import springwiki.demo.repositories.CategoryRepository;
 import springwiki.demo.repositories.PageRepository;
 
 import javax.validation.Valid;
 import java.text.Normalizer;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Pattern;

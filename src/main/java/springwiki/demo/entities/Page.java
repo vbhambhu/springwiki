@@ -1,4 +1,4 @@
-package springwiki.demo.models;
+package springwiki.demo.entities;
 
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -22,11 +22,14 @@ public class Page {
     @Size(min = 5, max = 255)
     private String title;
 
-    private String content;
+    private String body;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @ManyToOne
+    private User creator;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "category_id")
+//    private Category category;
 
 
     public Long getId() {
@@ -53,19 +56,23 @@ public class Page {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
+    public String getBody() {
+        return body;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setBody(String body) {
+        this.body = body;
     }
 
-    public Category getCategory() {
-        return category;
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+    //        public Category getCategory() {
+//        return category;
+//    }
+//
+//    public void setCategory(Category category) {
+//        this.category = category;
+//    }
 }

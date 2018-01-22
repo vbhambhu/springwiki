@@ -1,39 +1,40 @@
 package springwiki.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import springwiki.demo.models.Page;
-import springwiki.demo.repositories.PageRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+import springwiki.demo.entities.Page;
+import springwiki.demo.services.PageService;
 
-@Controller
+import java.util.List;
+
+@RestController
 public class PageController {
 
     @Autowired
-    PageRepository postRepository;
+    PageService pageService;
 
-    @RequestMapping(value = "/page/new", method = RequestMethod.GET)
-    public String projectDashboard() {
-        return "page/new";
+//    @Autowired
+//    private UserService userService;
+
+    @ResponseBody
+    @RequestMapping(value = "/pages", method = RequestMethod.GET)
+    public List<Page> pages(){
+        return pageService.findAll();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/page/create", method = RequestMethod.POST)
+    public String createPage(@RequestBody Page page){
+
+
+//        CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        page.setCreator(userService.getUser(userDetails.getUsername()));
+
+        pageService.create(page);
+        return "done";
     }
 
 
-    @RequestMapping(value = "/page/{slug}", method = RequestMethod.GET)
-    public String showPost(
-            Model model,
-            @PathVariable(required = true) String slug) {
-
-        Page post = postRepository.findBySlug(slug);
-
-
-        System.out.println(post.getCategory().getName());
-
-        model.addAttribute("post", post);
-
-        return "post/view";
-    }
 
 }

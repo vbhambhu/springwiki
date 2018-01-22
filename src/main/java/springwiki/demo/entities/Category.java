@@ -1,4 +1,4 @@
-package springwiki.demo.models;
+package springwiki.demo.entities;
 
 
 
@@ -20,8 +20,8 @@ public class Category {
     @Size(max = 100)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
-    private Set<Page> pages = new HashSet<>();
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
+//    private Set<Page> pages = new HashSet<>();
 
 
     public Long getId() {
@@ -40,11 +40,11 @@ public class Category {
         this.name = name;
     }
 
-    public Set<Page> getPages() {
-        return pages;
-    }
-
-    public void setPages(Set<Page> pages) {
-        this.pages = pages;
-    }
+//    public Set<Page> getPages() {
+//        return pages;
+//    }
+//
+//    public void setPages(Set<Page> pages) {
+//        this.pages = pages;
+//    }
 }

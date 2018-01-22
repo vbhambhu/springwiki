@@ -1,8 +1,6 @@
-package springwiki.demo.models;
+package springwiki.demo.entities;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 public class AjaxResponse {
 
