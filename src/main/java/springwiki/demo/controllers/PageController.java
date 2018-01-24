@@ -36,5 +36,13 @@ public class PageController {
     }
 
 
+    @ResponseBody
+    @RequestMapping(value = "/private", method = RequestMethod.GET)
+    public String rrrrr(){
+
+        return "Hello, I am private";
+    }
+
+
 
 }
