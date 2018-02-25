@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/admin">
+<body>
+<div layout:fragment="content">
+
+    <h3>Create new article</h3>
+
+    <form th:object="${article}" method="POST">
+
+        <div class="row">
+            <div class="col-md-9">
+
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('title')} ? is-invalid" th:field="${article.title}" />
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Error</div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Slug</label>
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('slug')} ? is-invalid" th:field="${article.slug}" />
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('slug')}" th:errors="*{slug}">Error</div>
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" th:field="${article.copy}" rows="5"></textarea>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+
+
+                <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-control" th:field="${article.status}">
+                        <option value="0">Draft</option>
+                        <option value="1">Publish</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label>Categories</label>
+                    <select multiple class="form-control select2_tags" th:field="${article.categories}">
+                        <option th:each="category : ${cats}"
+                                th:text="${category.name}"
+                                th:value="${category.id}"
+                        >1</option>
+
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-success">Create</button>
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </form>
+
+
+
+
+
+</div>
+</body>
+</html>

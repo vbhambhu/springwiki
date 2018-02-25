@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @Table(name = "page")
@@ -26,6 +27,12 @@ public class Page {
 
     @ManyToOne
     private User creator;
+
+    private boolean status;
+
+    private Date updatedAt;
+
+    private Date createdAt;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "category_id")

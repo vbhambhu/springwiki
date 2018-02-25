@@ -1,21 +1,31 @@
 package springwiki.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import springwiki.demo.entities.Page;
 import springwiki.demo.services.PageService;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class PageController {
 
     @Autowired
     PageService pageService;
 
-//    @Autowired
-//    private UserService userService;
+    @RequestMapping(value = "/page/create", method = RequestMethod.GET)
+    public String createPage(){
+        return "pages/create";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/page/create", method = RequestMethod.POST)
+    public String createPages(@RequestBody Page page){
+
+        pageService.create(page);
+        return "done";
+    }
 
     @ResponseBody
     @RequestMapping(value = "/pages", method = RequestMethod.GET)
@@ -23,17 +33,10 @@ public class PageController {
         return pageService.findAll();
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/page/create", method = RequestMethod.POST)
-    public String createPage(@RequestBody Page page){
 
 
-//        CustomUserDetails userDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        page.setCreator(userService.getUser(userDetails.getUsername()));
 
-        pageService.create(page);
-        return "done";
-    }
+
 
 
     @ResponseBody

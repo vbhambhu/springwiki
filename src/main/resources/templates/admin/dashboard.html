@@ -2,17 +2,21 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layouts/default">
+      layout:decorator="layouts/admin">
 <body>
 <div id="page" layout:fragment="content">
 
 
+    <form>
 
-    <h1 th:text="${post.title}">This is home page content</h1>
+        <div class="form-group">
+            <label>Page title</label>
+            <input type="text" class="form-control">
+        </div>
 
-    <h1 th:text="${post.category.name}">This is home page content</h1>
 
 
+    </form>
 
 </div>
 </body>
