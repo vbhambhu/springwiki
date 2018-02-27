@@ -118,4 +118,11 @@ public class ArticleService {
     public List<Article> getAllByHome() {
         return articleRepository.findByType(1);
     }
+
+    public List<Article> findbyKeyword(String query) {
+
+        if(query == null || query.length() == 0) return null;
+
+        return articleRepository.findByTitleContaining(query);
+    }
 }
