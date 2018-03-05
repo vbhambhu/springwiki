@@ -22,9 +22,9 @@ public class Article {
     @Size(min = 5, max = 255)
     private String title;
 
-    private String copy;
+    private String description;
 
-    private String image;
+    private String copy;
 
     @ManyToOne
     @JoinColumn(name = "author_id")
@@ -38,10 +38,6 @@ public class Article {
             inverseJoinColumns = @JoinColumn(
                     name = "category_id", referencedColumnName = "id"))
     private List<Category> categories;
-
-    private int type;
-    private int position;
-
 
     private boolean status;
 
@@ -73,20 +69,20 @@ public class Article {
         this.title = title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getCopy() {
         return copy;
     }
 
     public void setCopy(String copy) {
         this.copy = copy;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public User getAuthor() {
@@ -127,21 +123,5 @@ public class Article {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
     }
 }

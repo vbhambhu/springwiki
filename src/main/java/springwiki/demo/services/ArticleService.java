@@ -66,7 +66,7 @@ public class ArticleService {
 
         //upload file
         String filename = uploadFile(file);
-        article.setImage(filename);
+       // article.setImage(filename);
         article.setUpdatedAt(new Date());
         articleRepository.save(article);
     }
@@ -116,7 +116,7 @@ public class ArticleService {
     }
 
     public List<Article> getAllByHome() {
-        return articleRepository.findByType(1);
+        return articleRepository.findAllByStatus(true);
     }
 
     public List<Article> findbyKeyword(String query) {

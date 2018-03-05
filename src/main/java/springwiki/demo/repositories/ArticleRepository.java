@@ -10,7 +10,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     Article findBySlugAndIdNot(String newSlug, Long id);
 
-    List<Article> findByType(int typeId);
+    List<Article> findAllByStatus(boolean status);
 
     List<Article> findByTitleContaining(String query);
 }
