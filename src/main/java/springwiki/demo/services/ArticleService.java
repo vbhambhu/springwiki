@@ -125,4 +125,9 @@ public class ArticleService {
 
         return articleRepository.findByTitleContaining(query);
     }
+
+    public Article getBySlug(String slug) {
+
+        return articleRepository.findBySlug(slug);
+    }
 }

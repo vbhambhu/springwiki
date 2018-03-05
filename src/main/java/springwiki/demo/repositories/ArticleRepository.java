@@ -13,4 +13,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     List<Article> findAllByStatus(boolean status);
 
     List<Article> findByTitleContaining(String query);
+
+    Article findBySlug(String slug);
 }
