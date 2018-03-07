@@ -13,20 +13,10 @@ public class Menu {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int type;
-
     @NotEmpty
     private String name;
 
-    private Long pageId;
-
-    private Long articleId;
-
-    private Long categoryId;
-
-    private String link;
-
-    private Long parentId;
+    private String path;
 
     private int position;
 
@@ -38,14 +28,6 @@ public class Menu {
         this.id = id;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
     public String getName() {
         return name;
     }
@@ -54,44 +36,12 @@ public class Menu {
         this.name = name;
     }
 
-    public Long getPageId() {
-        return pageId;
+    public String getPath() {
+        return path;
     }
 
-    public void setPageId(Long pageId) {
-        this.pageId = pageId;
-    }
-
-    public Long getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(Long articleId) {
-        this.articleId = articleId;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public int getPosition() {

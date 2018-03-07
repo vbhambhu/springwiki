@@ -47,9 +47,9 @@ public class MenuController {
     public String saveMenu(@Valid Menu menu, Model model,  BindingResult bindingResult){
 
 
-        if(menu.getType() == 1 && menu.getArticleId() == null){
-            bindingResult.rejectValue("articleId", "menu.articleId", "Invalid article selected.");
-        }
+//        if(menu.getType() == 1 && menu.getArticleId() == null){
+//            bindingResult.rejectValue("articleId", "menu.articleId", "Invalid article selected.");
+//        }
 
 
         if(bindingResult.hasErrors()) {

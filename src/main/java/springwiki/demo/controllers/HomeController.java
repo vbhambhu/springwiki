@@ -27,20 +27,7 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
 
-//        Category postCategory = new Category();
-//        postCategory.setName("Categorty 1");
-//        Page page = new Page();
-//        page.setTitle("Hello World");
-//        page.setContent("Something");
-//        page.setCategory(postCategory);
-//        postRepository.save(page);
-
-//        for (Category category : categoryRepository.findAll()) {
-//            System.out.println(category);
-//        }
-
         model.addAttribute("articles", articleService.getAllByHome());
-
         return "home";
 
     }

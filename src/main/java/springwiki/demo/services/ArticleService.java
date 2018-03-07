@@ -116,7 +116,7 @@ public class ArticleService {
     }
 
     public List<Article> getAllByHome() {
-        return articleRepository.findAllByStatus(true);
+        return articleRepository.findAll();
     }
 
     public List<Article> findbyKeyword(String query) {

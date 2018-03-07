@@ -5,16 +5,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import springwiki.demo.repositories.CategoryRepository;
+import springwiki.demo.repositories.MenuRepository;
+
 
 @ControllerAdvice
-public class CategoriesAdvice {
+public class AppAdvice {
 
     @Autowired
-    CategoryRepository categoryRepository;
+    MenuRepository menuRepository;
 
     @ModelAttribute
     public void addAttributes(Model model) {
-        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("menuItems", menuRepository.findAll());
     }
+
+
+
+
 }
