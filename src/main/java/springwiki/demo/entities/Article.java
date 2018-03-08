@@ -22,6 +22,7 @@ public class Article {
     @Size(min = 5, max = 255)
     private String title;
 
+    @NotEmpty
     private String description;
 
     private String copy;

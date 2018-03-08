@@ -62,11 +62,8 @@ public class ArticleService {
         return articleRepository.findOne(id);
     }
 
-    public void update(Article article, MultipartFile file) {
-
-        //upload file
-        String filename = uploadFile(file);
-       // article.setImage(filename);
+    public void update(Article article) {
+        
         article.setUpdatedAt(new Date());
         articleRepository.save(article);
     }

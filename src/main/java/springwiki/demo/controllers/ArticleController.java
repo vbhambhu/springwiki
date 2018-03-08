@@ -68,7 +68,6 @@ public class ArticleController {
 
     @RequestMapping(value = "/article/edit", method = RequestMethod.POST)
     public String saveEditedPost(@RequestParam Long id,
-                                 @RequestParam("article_image") MultipartFile file,
                                  Model model,
                                  @Valid Article article, BindingResult bindingResult,
                                  RedirectAttributes redirAttrs){
@@ -95,7 +94,7 @@ public class ArticleController {
         article.setId(articleDb.getId());
         article.setCreatedAt(articleDb.getCreatedAt());
         article.setAuthor(articleDb.getAuthor());
-        articleService.update(article, file);
+        articleService.update(article);
         return "redirect:/articles";
 
 
