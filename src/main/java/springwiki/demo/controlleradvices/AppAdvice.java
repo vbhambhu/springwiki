@@ -17,6 +17,9 @@ public class AppAdvice {
     @ModelAttribute
     public void addAttributes(Model model) {
         model.addAttribute("menuItems", menuRepository.findAll());
+
+
+
     }
 
 
