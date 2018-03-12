@@ -8,16 +8,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import springwiki.demo.entities.Category;
+import springwiki.demo.entities.Post;
 import springwiki.demo.repositories.CategoryRepository;
-import springwiki.demo.repositories.PageRepository;
-import springwiki.demo.services.ArticleService;
+import springwiki.demo.services.PostService;
 
 @Controller
 public class HomeController {
 
     @Autowired
-    ArticleService articleService;
+    PostService postService;
 
     @Autowired
     CategoryRepository categoryRepository;
@@ -27,7 +26,7 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
 
-        model.addAttribute("articles", articleService.getAllByHome());
+        model.addAttribute("posts", postService.getAllByHome());
         return "home";
 
     }
@@ -36,7 +35,12 @@ public class HomeController {
     @RequestMapping(value = "/tutorial/{slug}", method = RequestMethod.GET)
     public String articleView(@PathVariable String slug,  Model model) {
 
-        model.addAttribute ("article", articleService.getBySlug(slug));
+
+        Post post = postService.getBySlug(slug);
+
+        model.addAttribute ("post", post);
+        model.addAttribute ("metaTitle", post.getTitle());
+        model.addAttribute ("metaDescription", post.getMetaDescription());
 
         return "article";
 

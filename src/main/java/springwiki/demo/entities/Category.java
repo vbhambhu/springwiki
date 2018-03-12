@@ -5,7 +5,9 @@ package springwiki.demo.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,9 +22,14 @@ public class Category {
     @Size(max = 100)
     private String name;
 
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "category")
-//    private Set<Page> pages = new HashSet<>();
+    private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
+    private Category parent;
+
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Category> children = new ArrayList<Category>();
 
     public Long getId() {
         return id;
@@ -40,11 +47,27 @@ public class Category {
         this.name = name;
     }
 
-//    public Set<Page> getPages() {
-//        return pages;
-//    }
-//
-//    public void setPages(Set<Page> pages) {
-//        this.pages = pages;
-//    }
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Category getParent() {
+        return parent;
+    }
+
+    public void setParent(Category parent) {
+        this.parent = parent;
+    }
+
+    public List<Category> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Category> children) {
+        this.children = children;
+    }
 }

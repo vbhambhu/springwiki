@@ -6,30 +6,28 @@
 <body>
 <div id="page" layout:fragment="content">
 
+    <div>
+        <input class="form-control">
+    </div>
+
+    <h3>Courses</h3>
     <div class="album py-5 bg-light">
         <div class="container">
-
             <div class="row">
-
-
-                <div class="col-md-6" th:each="article : ${articles}">
+                <div class="col-md-6" th:each="post : ${posts}">
                     <div class="card mb-4 box-shadow">
-
                         <div class="card-body">
-                           <a th:href="@{'/tutorial/' + ${article.slug}}"> <h3 class="card-text" th:text="${article.title}"></h3> </a>
-                            <p class="card-text" th:text="${article.description}"></p>
+                           <a th:href="@{'/tutorial/' + ${post.slug}}"> <h3 class="card-text" th:text="${post.title}"></h3> </a>
+                            <p class="card-text" th:text="${post.metaDescription}"></p>
                             <div class="d-flex justify-content-between align-items-center">
-                                    <a th:href="@{'/tutorial/' + ${article.slug}}" class="btn btn-sm btn-outline-secondary">Read</a>
+                                    <a th:href="@{'/tutorial/' + ${post.slug}}" class="btn btn-sm btn-outline-secondary">Read</a>
                                 <small class="text-muted">9 mins</small>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
         </div>
     </div>
-
 </div>
 </body>
 </html>

@@ -5,30 +5,26 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import springwiki.demo.SiteHelper;
-import springwiki.demo.entities.Article;
+import springwiki.demo.entities.Post;
 import springwiki.demo.entities.Category;
 import springwiki.demo.entities.User;
-import springwiki.demo.repositories.ArticleRepository;
+import springwiki.demo.repositories.PostRepository;
 import springwiki.demo.repositories.CategoryRepository;
 import springwiki.demo.repositories.UserRepository;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Service
-public class ArticleService {
+public class PostService {
 
     @Autowired
-    ArticleRepository articleRepository;
+    PostRepository articleRepository;
 
     @Autowired
     CategoryRepository categoryRepository;
@@ -40,7 +36,7 @@ public class ArticleService {
     private String uploadPath;
 
 
-    public List<Article> getAllPosts() {
+    public List<Post> getAllPosts() {
         return articleRepository.findAll();
     }
 
@@ -48,7 +44,7 @@ public class ArticleService {
         return categoryRepository.findAll();
     }
 
-    public void create(Article article) {
+    public void create(Post article) {
 
         User user = userRepository.findByUsername("admin");
 
@@ -57,13 +53,13 @@ public class ArticleService {
         articleRepository.save(article);
     }
 
-    public Article getById(Long id) {
+    public Post getById(Long id) {
 
         return articleRepository.findOne(id);
     }
 
-    public void update(Article article) {
-        
+    public void update(Post article) {
+
         article.setUpdatedAt(new Date());
         articleRepository.save(article);
     }
@@ -106,25 +102,29 @@ public class ArticleService {
 
     }
 
-    public boolean isDuplicateSlug(Article article) {
+    public boolean isDuplicateSlug(Post article) {
 
         return (articleRepository.findBySlugAndIdNot(article.getSlug(),article.getId()) == null) ? false : true;
 
     }
 
-    public List<Article> getAllByHome() {
+    public List<Post> getAllByHome() {
         return articleRepository.findAll();
     }
 
-    public List<Article> findbyKeyword(String query) {
+    public List<Post> findbyKeyword(String query) {
 
         if(query == null || query.length() == 0) return null;
 
         return articleRepository.findByTitleContaining(query);
     }
 
-    public Article getBySlug(String slug) {
+    public Post getBySlug(String slug) {
 
         return articleRepository.findBySlug(slug);
+    }
+
+    public void delete(Post post) {
+        articleRepository.delete(post);
     }
 }

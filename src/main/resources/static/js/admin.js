@@ -11,9 +11,27 @@ $('.select2_tags').exists(function() {
     $('.select2_tags').select2();
 
     tinymce.init({
-        selector: '#copy'
+        selector: '#content'
     });
 });
+
+
+$('#title').exists(function() {
+
+    $( "#title" ).blur(function() {
+        var title = $(this).val();
+        $( "#slug" ).val(slugify(title))
+    });
+
+
+    $('textarea').keyup(updateCount);
+    $('textarea').keydown(updateCount);
+
+
+
+});
+
+
 
 
 $('.select2_article').exists(function() {
@@ -52,3 +70,19 @@ function formatResultSelection (data) {
 
 
 });
+
+
+
+function slugify(text) {
+    return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')           // Replace spaces with -
+        .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+        .replace(/^-+/, '')             // Trim - from start of text
+        .replace(/-+$/, '');            // Trim - from end of text
+}
+
+function updateCount() {
+    var cs =$(this).val().length;
+    $('#characters').text(cs);
+}
